@@ -53,14 +53,15 @@ platform :ios do
     
     ENV["MATCH_READONLY"] = false.to_s
 
-    match(
-      type: "appstore",
-      git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
-      app_identifier: [
-        "com.#{TEAMID}.LoopFollow",
-        "com.#{TEAMID}.LoopFollow.LoopFollowLAExtension"
-      ]
-    )
+match(
+  type: "appstore",
+  generate_apple_certs: false,
+  git_basic_authorization: Base64.strict_encode64("#{GITHUB_REPOSITORY_OWNER}:#{GH_PAT}"),
+  app_identifier: [
+    "com.#{TEAMID}.LoopFollow",
+    "com.#{TEAMID}.LoopFollow.LoopFollowLAExtension"
+  ]
+)
 
     mapping = Actions.lane_context[
       SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING
